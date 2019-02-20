@@ -71,7 +71,8 @@ def putPvQueue(*args, **kwargs):
 def sendData(pvname,value):
     try:
         print(pvname+str(value))
-        publisher.testing(pvname,value)
+        publisher.__call__(u'testing', pvname,value)
+        #publisher.testing(pvname,value)
     except Exception as e:
         print(e)
 
