@@ -4,18 +4,18 @@ import os
 import sys
 import time
 import json
+import numpy
 import epics
 import queue
 import threading
 import zerorpc
 
 
-
-
 class PV(object):
     def __init__(self,pv_json,callback):
         self.name = pv_json["Name"]
         self.pvname = pv_json["Pv"]
+        pv_queue.put(self.pvname,epics.caget(self.pvname))
         self.pv = epics.pv.PV(
             self.pvname,
             callback = callback,
@@ -24,19 +24,6 @@ class PV(object):
         self.datatype = "int"
         if hasattr(pv_json,"Datatype"):
             self.datatype = pv_json["Datatype"]
-    """def subscription(self):
-        def sendData(value):#pvname,char_value,value,status,ftype,chid,host,type,cb_info,typefull,nelm,lower_ctrl_limit,count,upper_ctrl_limit,upper_warning_limit,lower_warning_limit,access,lower_alarm_limit,upper_alarm_limit,lower_disp_limit,  upper_disp_limit,write_access,read_access,enum_strs,units,precision,nanoseconds,posixseconds,severity,timestamp):
-            #print(value)
-            self.callback(self.pvname,value)
-        try:
-            None
-            #camonitor(str(self.pvname),sendData)
-        except Exception as e:
-            print(self.pvname+" "+str(e))
-    def sendData(self, *args, **kwargs):
-        value = str(kwargs["value"])
-        print(self.pvname+" "+value)
-        self.callback(self.pvname,value)"""
 
 
 def subscribePvObjects(list):
@@ -70,11 +57,11 @@ def putPvQueue(*args, **kwargs):
 
 def sendData(pvname,value):
     try:
-        print(pvname+str(value))
+        if(type(value) is numpy.ndarray):
+            value = value.tolist()
         publisher.__call__(u'testing', pvname,value)
-        #publisher.testing(pvname,value)
     except Exception as e:
-        print(e)
+        print("myerr",e)
 
 def runserver():
     #server = zerorpc.Server(ServerRPC())
@@ -95,6 +82,8 @@ pv_objects = createPvObjects(pv_list,putPvQueue)
 while True:
     item = pv_queue.get()
     sendData(item[0],item[1])
+
+
 #app = QtCore.QCoreApplication(sys.argv)
 
 #thread1 = threading.Thread(target=testsubscriber)
