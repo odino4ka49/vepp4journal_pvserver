@@ -1,5 +1,45 @@
 [
     {
+        "Name": "V4_energy_set",
+        "Pv": "VEPP4:EnergySet-RB",
+        "Datatype": "float"
+    },
+    {
+        "Name": "V4_energy_meas",
+        "Pv": "VEPP4:EnergyMeas-RB",
+        "Datatype": "float"
+    },
+    {
+        "Name": "V4_freq_set",
+        "Pv": "VEPP4:FrequencySet-RB",
+        "Datatype": "float"
+    },
+    {
+        "Name": "V4_curr_total",
+        "Pv": "VEPP4:CurrentTotal-RB",
+        "Datatype": "float"
+    },
+    {
+        "Name": "V4_curr_e1",
+        "Pv": "VEPP4:CurrentE1-RB",
+        "Datatype": "float"
+    },
+    {
+        "Name": "V4_curr_e2",
+        "Pv": "VEPP4:CurrentE2-RB",
+        "Datatype": "float"
+    },
+    {
+        "Name": "V4_curr_p1",
+        "Pv": "VEPP4:CurrentP1-RB",
+        "Datatype": "float"
+    },
+    {
+        "Name": "V4_curr_p2",
+        "Pv": "VEPP4:CurrentP2-RB",
+        "Datatype": "float"
+    },
+    {
         "Name": "V4_bpm_name",
         "Pv": "VEPP4:BPM_name-RB",
         "Datatype": "wf"
