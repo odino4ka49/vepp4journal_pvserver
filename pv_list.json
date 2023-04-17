@@ -96,12 +96,22 @@
     },
     {
         "Name": "V4_orb_p2_x",
-        "Pv": "VEPP4:orbit:p2_x-I",
-        "Datatype": "wf"
+        "Pv": "VEPP4:Qx-RB",
+        "Datatype": "float"
     },
     {
         "Name": "V4_orb_p2_z",
-        "Pv": "VEPP4:orbit:p2_z-I",
+        "Pv": "VEPP4:Qz-RB",
+        "Datatype": "float"
+    },
+    {
+        "Name": "V4_beta_x",
+        "Pv": "VEPP4:fourier:Bx-I",
+        "Datatype": "wf"
+    },
+    {
+        "Name": "V4_beta_z",
+        "Pv": "VEPP4:fourier:Bz-I",
         "Datatype": "wf"
     }
 ]
