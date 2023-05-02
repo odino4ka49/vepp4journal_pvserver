@@ -11,6 +11,11 @@ import threading
 import zerorpc
 
 
+class HelloRPC(zerorpc.Publisher):
+    def connect(self, name):
+        print("tryyyy")
+        return "Connected to %s" % name
+
 class PV(object):
     def __init__(self,pv_json,callback):
         self.name = pv_json["Name"]
@@ -65,7 +70,7 @@ def sendData(pvname,value):
 
 def runserver():
     #server = zerorpc.Server(ServerRPC())
-    server = zerorpc.Publisher()
+    server = HelloRPC()#zerorpc.Publisher()
     server.bind("tcp://0.0.0.0:4243")
     return server
     #client = zerorpc.Client()
